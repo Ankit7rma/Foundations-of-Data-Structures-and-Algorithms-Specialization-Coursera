@@ -38,21 +38,24 @@ def build_min_heap(arr):
     for i in range(n // 2 - 1, -1, -1):
         min_heapify(arr, n, i)
 
-def insertInHeap(heap,value):
-    if heap is None:
-        heap = []
-    heap.append(value)
-    i = len(heap)-1
-    while i>0:
-        parentIndex = (i-1)//2
-        if heap[parentIndex]>heap[i]:
-            heap[parentIndex],heap[i] = heap[i],heap[parentIndex]
-            i = parentIndex
+def insert_in_heap(heap, value):
+    """
+    Inserts a new value into the min-heap and maintains the heap property.
+    """
+    heap.append(value)  # Add the new element to the end
+    i = len(heap) - 1  # Start at the last element
+
+    # Perform bubble-up to restore the min-heap property
+    while i > 0:
+        parent_index = (i - 1) // 2
+        if heap[parent_index] > heap[i]:
+            heap[parent_index], heap[i] = heap[i], heap[parent_index]
+            i = parent_index  # Move up the heap
         else:
             break
 
 arr = [14, 10, 13, 5, 1,7,9]
  
 build_min_heap(arr)
-insertInHeap(arr,6)
+insert_in_heap(arr,6)
 print(arr)
